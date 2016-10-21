@@ -1,13 +1,11 @@
 <?php
-
-$link = mysql_connect('localhost', 'admin', 'admin');
-if (!$link) {
-    die('Not connected : ' . mysql_error());
-}
-
-// make foo the current db
-$db_selected = mysql_select_db('php_test', $link);
-if (!$db_selected) {
-    die ('Can\'t use foo : ' . mysql_error());
+include('connection.php');
+if(isset($_REQUEST['id']))
+{
+	 $query = 'delete from employee where id ='.$_REQUEST['id'];
+	$insert = mysql_query($query);
+	$url = getUrl('index.php');
+	header('Location: '.$url);
+	die;  
 }
 ?>

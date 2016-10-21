@@ -2,16 +2,7 @@
 include('connection.php');
 $sql = "select * from employee";
 $res = mysql_query($sql); 
-print_r($_POST);
-if(isset($_POST['e_delete']))
-{
-	print_r($_POST);
-	$query = 'delete employee where id ='.$_POST['e_id'];
-	$insert = mysql_query($query);
-	$url = getUrl('index.php');
-	header('Location: '.$url);
-	die;  
-}
+
 ?>
 
 <a href="create.php">Create</a>
@@ -36,10 +27,7 @@ if(isset($_POST['e_delete']))
 			<td><a href="<?php echo 'view.php?id='.$r["id"];?>">view</a></td>
 			<td><a href="<?php echo 'edit.php?id='.$r["id"];?>">edit</a></td>
 			<td>
-				<form method="POST" action="index.php" name="deleteForm_<?php echo $r["id"];?>">
-				<input name="e_id" type="hidden" value="<?php echo $r["id"];?>">
-				<input type="submit" name="e_delete" value="Delete">
-				</form>
+				<a href="<?php echo 'delete.php?id='.$r["id"];?>">delete</a>
 			</td>
 			
 		</tr>
